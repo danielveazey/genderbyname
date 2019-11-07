@@ -1,12 +1,12 @@
 import numpy as np
 import pandas as pd
+from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import MultinomialNB
-from sklearn.feature_extraction.text import CountVectorizer
 
 # get dataset; names are strings and genders are listed as 0 for female, 1 for male
-# df = pd.read_csv('2017_top_baby_names.csv')
-df = pd.read_csv('names_genders.csv')
+df = pd.read_csv('2017_top_baby_names.csv')
+# df = pd.read_csv('names_genders.csv')
 
 # break the names up into parts
 def features(name):
@@ -33,17 +33,18 @@ accuracy = clf.score(X_test, y_test)
 print('Accuracy:', accuracy)
 
 # let the user enter a name
-user_name = str(input('Enter a name: '))
-user_name_data = np.array([user_name])
-user_name_data[0] = features(user_name_data[0])
-user_name_data_vector = cv.transform(user_name_data)
-guess = clf.predict(user_name_data_vector)
-if guess[0] == 0:
-    print('I think that name is female.')
-elif guess[0] == 1:
-    print('I think that name is male.')
-else:
-    print(guess)
+while True:
+    user_name = str(input('Enter a name: '))
+    user_name_data = np.array([user_name])
+    user_name_data[0] = features(user_name_data[0])
+    user_name_data_vector = cv.transform(user_name_data)
+    guess = clf.predict(user_name_data_vector)
+    if guess[0] == 0:
+        print('I think that name is female.')
+    elif guess[0] == 1:
+        print('I think that name is male.')
+    else:
+        print(guess)
 
 # test some sample names
 # sample_names = [] # put some names into this list
