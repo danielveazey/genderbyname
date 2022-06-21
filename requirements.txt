@@ -6,7 +6,7 @@ inflection==0.3.1
 kiwisolver==1.0.1
 matplotlib==3.0.0
 more-itertools==4.3.0
-numpy==1.15.2
+numpy==1.22.0
 pandas==0.23.4
 pyparsing==2.2.1
 python-dateutil==2.7.3
